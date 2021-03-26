@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: AddressResolverTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.146 s <<< FAILURE! - in AddressResolverTest
+findAddressForLocationTest  Time elapsed: 0.142 s  <<< ERROR!
+java.lang.NullPointerException
+	at AddressResolverTest.findAddressForLocationTest(AddressResolverTest.java:22)
+
