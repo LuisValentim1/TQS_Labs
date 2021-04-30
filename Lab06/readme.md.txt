@@ -3,7 +3,7 @@ Aula: TQS Lab06
 
 Ex1
   
-  c) Utilizei mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken para adicionar a análise do projeto ao dashboard do sonarqube
+  c) Utilizei mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken no diretório do projeto para adicionar a análise do projeto ao dashboard do sonarqube
      Foram identificados 1 Bug, 1 security hotspot e 25 code smells.
 
   e)
@@ -30,4 +30,18 @@ Ex2
 
   a) O projeto tem 2h de technical debt, ou seja seria necessário um programador trabalhar 2 horas para resolver todos os problemas encontrados.
 
-  d) 134, o numero de linhas de código que não estão a ser testadas por unit tests.							
+  d) 134, o numero de linhas de código que não estão a ser testadas por unit tests.			
+
+Ex3 
+
+  configurei um quality gate personalizado para o euromillions-play com as seguintes condições 
+  Conditions on New Code
+Metric				Operator			Value	
+Code Smells			is greater than			4		
+Minor Issues			is greater than			5	
+	
+  Conditions on Overall Code
+Metric				Operator			Value	
+Line Coverage			is less than			21.0%		
+Major Issues			is greater than			2		
+			
