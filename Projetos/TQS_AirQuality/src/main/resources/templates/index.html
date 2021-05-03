@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:margin="http://www.w3.org/1999/xhtml"
+      xmlns:border="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml"
+      xmlns:width="http://www.w3.org/1999/xhtml">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+
+    <title>Air Quality Project</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../../resources/static/css/fontawesome.css" th:href="@{/css/fontawesome.css}">
+    <link rel="stylesheet" href="../../resources/static/css/templatemo-host-cloud.css" th:href="@{/css/templatemo-host-cloud.css}">
+    <link rel="stylesheet" href="../../resources/static/css/owl.css" th:href="@{/css/owl.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+  </head>
+
+  <body>
+
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <div class="header-text caption">
+              <h2>Choose Your City</h2>
+              <div id="search-section">
+              	<form id="suggestion_form" name="gs" method="get" action="#">
+                <div class="searchText">                 
+                  <input id="cityName" type="text" name="q" class="searchText" autocomplete="on">
+                </div>
+                    <input onclick="search()" type="button" name="results" class="main-button" value="Get weather" href="#info_div">>
+                 </form>
+               <div class="advSearch_chkbox">
+               </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Banner Ends Here -->
+    <div id="info_div" class="testimonial-item">
+    </div>
+
+    <script>
+      function search() {
+            var city = document.getElementById("cityName").value;
+            fetch('http://localhost:8080/airQuality/'+city)
+                .then(res => res.json())
+                .then(json => getAirQuality(json, city));
+        }
+
+        function getAirQuality(json, city) {
+            var div = document.getElementById("info_div");
+            div.innerHTML = "";
+
+            var h1 = document.createElement("h1");
+            var name = document.createTextNode(city);
+            h1.appendChild(name);
+            div.append(h1);
+
+            var p1 = document.createElement("p");
+            var text1 = document.createTextNode("Nivel de mofo: " + json[0]["mold_level"]);
+            p1.appendChild(text1);
+            div.append(p1);
+
+            var p2 = document.createElement("p");
+            var text2 = document.createTextNode("Índice de qualidade do ar: " + json[0]["aqi"]);
+            p2.appendChild(text2);
+            div.append(p2);
+
+            var p3 = document.createElement("p");
+            var text3 = document.createTextNode("Concentração de particulas finas(µg/m³): " + json[0]["pm10"]);
+            p3.appendChild(text3);
+            div.append(p3);
+
+            var p4 = document.createElement("p");
+            var text4 = document.createTextNode("Concentração de CO(µg / m³): " + json[0]["co"]);
+            p4.appendChild(text4);
+            div.append(p4);
+
+            var p5 = document.createElement("p");
+            var text5 = document.createTextNode("Concentração de O3(µg / m³): " + json[0]["o3"]);
+            p5.appendChild(text5);
+            div.append(p5);
+
+            var p6 = document.createElement("p");
+            var text6 = document.createTextNode("Tipo de pollen predominante: " + json[0]["predominant_pollen_type"]);
+            p6.appendChild(text6);
+            div.append(p6);
+
+            var p7 = document.createElement("p");
+            var text7 = document.createTextNode("Concentração de SO2(µg / m³): " + json[0]["so2"]);
+            p7.appendChild(text7);
+            div.append(p7);
+
+            var p8 = document.createElement("p");
+            var text8 = document.createTextNode("Nivel de pollen associado a árvores: " + json[0]["pollen_level_tree"]);
+            p8.appendChild(text8);
+            div.append(p8);
+
+            var p9 = document.createElement("p");
+            var text9 = document.createTextNode("Nivel de pollen associado a ervas: " + json[0]["pollen_level_weed"]);
+            p9.appendChild(text9);
+            div.append(p9);
+
+            var p10 = document.createElement("p");
+            var text10 = document.createTextNode("Concentração de NO2(µg / m³): " + json[0]["no2"]);
+            p10.appendChild(text10);
+            div.append(p10);
+
+            var p11 = document.createElement("p");
+            var text11 = document.createTextNode("Concentração de particulas com 2.5 micrometros ou menos(µg/m³): " + json[0]["pm25"]);
+            p11.appendChild(text11);
+            div.append(p11);
+
+            var p12 = document.createElement("p");
+            var text12 = document.createTextNode("Nivel de pollen associado a relva: " + json[0]["pollen_level_grass"]);
+            p12.appendChild(text12);
+            div.append(p12);
+
+            document.scrollDown(100)
+        }
+
+
+    </script>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Additional Scripts -->
+    <script src="../../resources/static/js/custom.js" th:href="@{/js/custom.js}"></script>
+    <script src="../../resources/static/js/owl.js" th:href="@{/js/owl.js}"></script>
+    <script src="../../resources/static/js/accordions.js" th:href="@{/js/accordions.js}"></script>
+
+
+    <script language = "text/Javascript"> 
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
+
+  </body>
+</html>
