@@ -12,10 +12,11 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -105,4 +106,14 @@ class AirQualityControllerTest {
                 .andExpect(jsonPath("$[0].pollen_level_weed", is(cityWeather.getPollen_level_weed())))
                 .andExpect(jsonPath("$[0].pollen_level_tree", is(cityWeather.getPollen_level_tree())));
     }
+
+    @Test
+    public void givenNonExistingCity_getEmpty() throws Exception {
+        given(service.getAirQuality("gotham")).willReturn(new Weather[] {new Weather()});
+        mvc.perform(get("/airQuality/gotham")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0]", is(new LinkedHashMap())));
+    }
+
 }

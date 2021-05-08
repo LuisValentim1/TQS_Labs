@@ -38,9 +38,9 @@ public class WeatherbitAPIService{
             RestTemplate restTemplate = new RestTemplate();
             String finalUrl = urlStarter + city + "&country=PT&key=8844fedceca0468cb6296f574866452b";
             Response cityInfo = restTemplate.getForObject(finalUrl, Response.class);
-            Long timeNow = new Timestamp(System.currentTimeMillis()).getTime();
-            cityInfo.setTimestamp(timeNow);
             if (cityInfo != null) {
+                Long timeNow = new Timestamp(System.currentTimeMillis()).getTime();
+                cityInfo.setTimestamp(timeNow);
                 cache.setMiss();
                 this.saveCity(city);
                 this.saveAirInfo(city, cityInfo);
