@@ -5,6 +5,8 @@ import Project.TQS_AirQuality.Models.Response;
 import Project.TQS_AirQuality.Models.Weather;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +38,8 @@ public class WeatherbitAPIService{
             RestTemplate restTemplate = new RestTemplate();
             String finalUrl = urlStarter + city + "&country=PT&key=8844fedceca0468cb6296f574866452b";
             Response cityInfo = restTemplate.getForObject(finalUrl, Response.class);
+            Long timeNow = new Timestamp(System.currentTimeMillis()).getTime();
+            cityInfo.setTimestamp(timeNow);
             if (cityInfo != null) {
                 cache.setMiss();
                 this.saveCity(city);

@@ -9,14 +9,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+
 public class Cache {
+
+    private long TIMEOUT = 1000000;
 
     private static List<String> cities = new ArrayList<>();
     private static Map<String, Response> cityInfo = new HashMap<>();
     private static int misses = 0;
     private static int hits = 0;
 
-    //Empty constructor
     public Cache() {}
 
     public void setMiss() {
@@ -69,6 +72,7 @@ public class Cache {
     }
 
     public boolean exists(String city) {
-        return (cityInfo.containsKey(city) && cityInfo.get(city) != null);
+        long timeNow = new Timestamp(System.currentTimeMillis()).getTime();
+        return (cityInfo.containsKey(city) && cityInfo.get(city) != null && timeNow - cityInfo.get(city).getTimestamp() < TIMEOUT);
     }
 }

@@ -669,7 +669,7 @@ header {
 }
 .testimonial-item {
 	text-align: center;
-	background-image: url(../images/cloud2.jpg);
+	/**background-image: url(../images/cloud2.jpg);**/
 	background-size: cover;
 	background-repeat: no-repeat;
 	padding: 300px 0px;
