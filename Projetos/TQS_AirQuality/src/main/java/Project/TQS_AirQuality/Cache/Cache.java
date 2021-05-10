@@ -13,14 +13,19 @@ import java.util.Map;
 
 public class Cache {
 
-    private long TIMEOUT = 1000000;
+    private long TIMEOUT = 10000000;
 
-    private static List<String> cities = new ArrayList<>();
-    private static Map<String, Response> cityInfo = new HashMap<>();
-    private static int misses = 0;
-    private static int hits = 0;
+    private static List<String> cities;
+    private static Map<String, Response> cityInfo;
+    private static int misses;
+    private static int hits;
 
-    public Cache() {}
+    public Cache() {
+        this.cities = new ArrayList<>();
+        this.cityInfo = new HashMap<>();
+        this.hits = 0;
+        this.misses = 0;
+    }
 
     public void setMiss() {
         misses++;
@@ -31,17 +36,17 @@ public class Cache {
     }
 
     public void setCityInfo(String city, Response info) {
-        cityInfo.put(city.toLowerCase(), info);
+        cityInfo.put(city, info);
     }
 
     public Response getCityInfo(String city) {
-        if(cityInfo.get(city.toLowerCase()).toString().length() > 0){
+        if(cityInfo.containsKey(city)){
             hits++;
         }
         else{
             misses++;
         }
-        return cityInfo.get(city.toLowerCase());
+        return cityInfo.get(city);
     }
 
     public void addCity(String city){
