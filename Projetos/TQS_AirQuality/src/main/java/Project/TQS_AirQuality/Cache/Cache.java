@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class Cache {
 
-    private static long TIMEOUT = 200000;
+    private static final long TIMEOUT = 200000;
 
     private List<String> cities;
     private Map<String, Response> cityInfo;

@@ -15,7 +15,7 @@ public class WeatherbitAPIService{
 
     Cache cache = new Cache();
 
-    private static final String urlStarter = "http://api.weatherbit.io/v2.0/current/airquality?city=";
+    private static final String URLSTARTER = "http://api.weatherbit.io/v2.0/current/airquality?city=";
 
     public void saveCity(String city) {
         cache.addCity(city);
@@ -36,7 +36,7 @@ public class WeatherbitAPIService{
     public Weather[] getAirQuality(String city) {
         if (!cache.exists(city.toLowerCase())) {
             RestTemplate restTemplate = new RestTemplate();
-            String finalUrl = urlStarter + city + "&country=PT&key=8844fedceca0468cb6296f574866452b";
+            String finalUrl = URLSTARTER + city + "&country=PT&key=8844fedceca0468cb6296f574866452b";
             Response cityInfo = restTemplate.getForObject(finalUrl, Response.class);
             if (cityInfo != null) {
                 Long timeNow = new Timestamp(System.currentTimeMillis()).getTime();

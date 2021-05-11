@@ -10,7 +10,7 @@ class TqsAirQualityApplicationTests {
 
 	@Test
 	void contextLoads() {
-		assertThat(true).isTrue();
+		
 	}
 
 }
