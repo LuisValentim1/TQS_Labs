@@ -18,20 +18,20 @@ class CacheTest {
     private Map<String, String> stats;
 
     @Test
-    public void ifExists_returnTrue(){
+    void ifExists_returnTrue(){
         setCityInfo_getCityInfo();
         assertTrue(c.exists("Porto"));
     }
 
     @Test
-    public void ifDoesNotExist_returnFalse(){
+    void ifDoesNotExist_returnFalse(){
         setCityInfo_getCityInfo();
 
         assertFalse(c.exists("aveiro"));
     }
 
     @Test
-    public void ifExistsButTimedOut_returnFalse(){
+    void ifExistsButTimedOut_returnFalse(){
         c = new Cache();
         r = new Response();
         r.setTimestamp(0);
@@ -41,7 +41,7 @@ class CacheTest {
     }
 
     @Test
-    public void setCityInfo_getCityInfo(){
+    void setCityInfo_getCityInfo(){
         c = new Cache();
         r = new Response();
         r.setTimestamp(new Timestamp(System.currentTimeMillis()).getTime());
@@ -51,7 +51,7 @@ class CacheTest {
     }
 
     @Test
-    public void setCityInfo_getCache(){
+    void setCityInfo_getCache(){
         c = new Cache();
         r = new Response();
         cityInfo = new HashMap<>();
@@ -63,7 +63,7 @@ class CacheTest {
     }
 
     @Test
-    public void getStats_returnExpectedStats(){
+    void getStats_returnExpectedStats(){
         c = new Cache();
         r = new Response();
         stats = new HashMap<>();
@@ -86,7 +86,7 @@ class CacheTest {
     }
 
     @Test
-    public void addCity_addsCityToCitiesArray(){
+    void addCity_addsCityToCitiesArray(){
         c = new Cache();
         c.addCity("Porto");
 

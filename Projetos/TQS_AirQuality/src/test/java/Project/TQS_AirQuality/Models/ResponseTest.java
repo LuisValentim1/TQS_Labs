@@ -15,12 +15,12 @@ class ResponseTest {
     private Weather weather;
 
     @BeforeEach
-    public void setup(){
+    void setup(){
         r = new Response();
     }
 
     @Test
-    public void setData_getData(){
+    void setData_getData(){
         weather = new Weather();
         data = new Weather[1];
         data[0] = weather;
@@ -29,7 +29,7 @@ class ResponseTest {
     }
 
     @Test
-    public void setTimestamp_getTimestamp(){
+    void setTimestamp_getTimestamp(){
         timeNow = new Timestamp(System.currentTimeMillis()).getTime();
         r.setTimestamp(timeNow);
         assertEquals(timeNow, r.getTimestamp());

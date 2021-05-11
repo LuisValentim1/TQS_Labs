@@ -17,7 +17,6 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -35,14 +34,14 @@ class AirQualityControllerTest {
     private List<String> cities;
 
     @BeforeEach
-    public void setup(){
+    void setup(){
         cities = new ArrayList<>();
         cities.add("Porto");
         cities.add("Aveiro");
     }
 
     @Test
-    public void givenCities_getCitiesJSON() throws Exception{
+    void givenCities_getCitiesJSON() throws Exception{
         given(service.getCities()).willReturn(cities);
         mvc.perform(get("/airQuality/cities")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -53,7 +52,7 @@ class AirQualityControllerTest {
     }
 
     @Test
-    public void givenStats_getStatsJson() throws Exception{
+    void givenStats_getStatsJson() throws Exception{
 
         HashMap<String, String> statistics = new HashMap<>();
         statistics.put("hit", "2");
@@ -70,7 +69,7 @@ class AirQualityControllerTest {
     }
 
     @Test
-    public void givenCity_getCityJson() throws Exception{
+    void givenCity_getCityJson() throws Exception{
         Weather[] weathers = new Weather[1];
         Weather cityWeather = new Weather();
         cityWeather.setCity_name("Porto");
@@ -108,7 +107,7 @@ class AirQualityControllerTest {
     }
 
     @Test
-    public void givenNonExistingCity_getEmpty() throws Exception {
+    void givenNonExistingCity_getEmpty() throws Exception {
         given(service.getAirQuality("gotham")).willReturn(new Weather[] {new Weather()});
         mvc.perform(get("/airQuality/gotham")
                 .contentType(MediaType.APPLICATION_JSON))

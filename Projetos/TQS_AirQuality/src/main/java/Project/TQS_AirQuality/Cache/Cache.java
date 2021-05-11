@@ -1,6 +1,5 @@
 package Project.TQS_AirQuality.Cache;
 
-import Project.TQS_AirQuality.Models.Weather;
 import Project.TQS_AirQuality.Models.Response;
 
 import java.sql.Timestamp;
@@ -13,12 +12,12 @@ import java.util.Map;
 
 public class Cache {
 
-    private long TIMEOUT = 10000000;
+    private static long TIMEOUT = 200000;
 
-    private static List<String> cities;
-    private static Map<String, Response> cityInfo;
-    private static int misses;
-    private static int hits;
+    private List<String> cities;
+    private Map<String, Response> cityInfo;
+    private int misses;
+    private int hits;
 
     public Cache() {
         this.cities = new ArrayList<>();
@@ -54,7 +53,7 @@ public class Cache {
     }
 
     public List<String> getCities(){
-        if(cities.size() > 0){
+        if(!cities.isEmpty()){
             hits++;
         }
         else{

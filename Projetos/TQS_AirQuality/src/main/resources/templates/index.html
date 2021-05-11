@@ -3,59 +3,59 @@
       xmlns:border="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml"
       xmlns:width="http://www.w3.org/1999/xhtml">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="TemplateMo">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="TemplateMo">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
-    <title>Air Quality Project</title>
+  <title>Air Quality Project</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="../../resources/static/css/fontawesome.css" th:href="@{/css/fontawesome.css}">
-    <link rel="stylesheet" href="../../resources/static/css/templatemo-host-cloud.css" th:href="@{/css/templatemo-host-cloud.css}">
-    <link rel="stylesheet" href="../../resources/static/css/owl.css" th:href="@{/css/owl.css}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="../../resources/static/css/fontawesome.css" th:href="@{/css/fontawesome.css}">
+  <link rel="stylesheet" href="../../resources/static/css/templatemo-host-cloud.css" th:href="@{/css/templatemo-host-cloud.css}">
+  <link rel="stylesheet" href="../../resources/static/css/owl.css" th:href="@{/css/owl.css}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <!-- Page Content -->
-    <!-- Banner Starts Here -->
-    <div class="banner">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 offset-md-2">
-            <div class="header-text caption">
-              <h2>Choose Your City</h2>
-              <div id="search-section">
-              	<form id="suggestion_form" name="gs" method="get" action="#">
-                <div class="searchText">                 
-                  <input id="cityName" type="text" name="q" class="searchText" autocomplete="on">
-                </div>
-                    <input onclick="search()" type="button" name="results" class="main-button" value="Get weather" href="#info_div">>
-                 </form>
-               <div class="advSearch_chkbox">
-               </div>
+<!-- Page Content -->
+<!-- Banner Starts Here -->
+<div class="banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="header-text caption">
+          <h2>Choose Your City</h2>
+          <div id="search-section">
+            <form id="suggestion_form" name="gs" method="get" action="#">
+              <div class="searchText">
+                <input id="cityName" type="text" name="q" class="searchText" autocomplete="on">
               </div>
+              <input onclick="search()" type="button" name="results" class="main-button" value="Get weather" href="#info_div">>
+            </form>
+            <div class="advSearch_chkbox">
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Banner Ends Here -->
-    <div id="info_div" class="testimonial-item">
-    </div>
+  </div>
+</div>
+<!-- Banner Ends Here -->
+<div id="info_div" class="testimonial-item">
+</div>
 
-    <script>
+<script>
       function search() {
             var city = document.getElementById("cityName").value;
             fetch('http://localhost:8080/airQuality/'+city)
@@ -65,7 +65,7 @@
 
         function getAirQuality(json, city) {
             var div = document.getElementById("info_div");
-            div.innerHTML = "";
+            div.innerHTML = "result";
 
             var h1 = document.createElement("h1");
             var name = document.createTextNode(city);
@@ -139,17 +139,17 @@
     </script>
 
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Additional Scripts -->
-    <script src="../../resources/static/js/custom.js" th:href="@{/js/custom.js}"></script>
-    <script src="../../resources/static/js/owl.js" th:href="@{/js/owl.js}"></script>
-    <script src="../../resources/static/js/accordions.js" th:href="@{/js/accordions.js}"></script>
+<!-- Additional Scripts -->
+<script src="../../resources/static/js/custom.js" th:href="@{/js/custom.js}"></script>
+<script src="../../resources/static/js/owl.js" th:href="@{/js/owl.js}"></script>
+<script src="../../resources/static/js/accordions.js" th:href="@{/js/accordions.js}"></script>
 
 
-    <script language = "text/Javascript"> 
+<script language = "text/Javascript">
       cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
       function clearField(t){                   //declaring the array outside of the
       if(! cleared[t.id]){                      // function makes it static and global
@@ -160,5 +160,5 @@
       }
     </script>
 
-  </body>
+</body>
 </html>

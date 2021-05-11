@@ -10,15 +10,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.sql.Timestamp;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
 
 @ExtendWith(MockitoExtension.class)
 class WeatherbitAPIServiceTest {
@@ -34,7 +31,7 @@ class WeatherbitAPIServiceTest {
     private Response porto;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
 
         cities = new ArrayList<>();
         cities.add("Aveiro");
@@ -68,7 +65,7 @@ class WeatherbitAPIServiceTest {
     }
 
     @Test
-    public void givenCities_whenGetCities_thenReturn() {
+    void givenCities_whenGetCities_thenReturn() {
         String city1 ="Porto";
         String city2 ="Aveiro";
 
@@ -82,7 +79,7 @@ class WeatherbitAPIServiceTest {
     }
 
     @Test
-    public void givenStatistics_whenGetStatistics_thenReturn() {
+    void givenStatistics_whenGetStatistics_thenReturn() {
         int hits = 2;
         int misses = 1;
         List<String> citiesReturn = Arrays.asList("Aveiro", "Porto");
@@ -99,7 +96,7 @@ class WeatherbitAPIServiceTest {
 
 
     @Test
-    public void whenInvalidCity_thenAirQualityInfoShouldBeNull() {
+    void whenInvalidCity_thenAirQualityInfoShouldBeNull() {
         String invalidCityName = "gotham";
 
         Weather[] returned = service.getAirQuality(invalidCityName);
@@ -114,7 +111,7 @@ class WeatherbitAPIServiceTest {
 
 
     @Test
-    public void whenValidCity_thenAirQualityInfoShouldBeReturned() {
+    void whenValidCity_thenAirQualityInfoShouldBeReturned() {
         Mockito.when(c.getCityInfo("Porto")).thenReturn(porto);
 
         Weather[] returned = service.getAirQuality("Porto");

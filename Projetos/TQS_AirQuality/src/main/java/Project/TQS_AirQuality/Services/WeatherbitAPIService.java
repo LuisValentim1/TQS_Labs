@@ -49,7 +49,6 @@ public class WeatherbitAPIService{
             else
                 return new Weather[] {new Weather()};
         }
-        // valid value just do get
         else {
             cache.setHit();
             return cache.getCityInfo(city).getData();
